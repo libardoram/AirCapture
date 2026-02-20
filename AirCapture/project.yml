@@ -1,0 +1,69 @@
+name: AirCapture
+options:
+  bundleIdPrefix: com.aircapture
+  deploymentTarget:
+    macOS: "15.0"
+  xcodeVersion: "16.0"
+  developmentLanguage: en
+  generateEmptyDirectories: true
+
+settings:
+  DEVELOPMENT_TEAM: P52TP966B3
+  SWIFT_VERSION: "5.0"
+  MACOSX_DEPLOYMENT_TARGET: "15.0"
+  ARCHS: arm64
+  ONLY_ACTIVE_ARCH: NO
+  MARKETING_VERSION: "1.3"
+  CURRENT_PROJECT_VERSION: "1"
+
+targets:
+  AirCapture:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources
+        excludes:
+          - "*.entitlements"
+    postCompileScripts:
+      - name: "Embed Libraries"
+        script: |
+          "${PROJECT_DIR}/Scripts/embed_libraries.sh"
+        runOnlyWhenInstalling: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.aircapture.AirCapture
+        INFOPLIST_FILE: Sources/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Sources/AirCapture.entitlements
+        SWIFT_OBJC_BRIDGING_HEADER: Sources/AirCapture-Bridging-Header.h
+        # Header search paths for UxPlay bridging header
+        HEADER_SEARCH_PATHS:
+          - "$(PROJECT_DIR)/../vendor/uxplay/build/include"
+          - "$(PROJECT_DIR)/../vendor/uxplay/lib"
+        # Library search paths for UxPlay static lib + OpenSSL + libplist
+        LIBRARY_SEARCH_PATHS:
+          - "$(PROJECT_DIR)/../vendor/uxplay/build"
+          - "/opt/homebrew/Cellar/openssl@3/3.6.1/lib"
+          - "/opt/homebrew/Cellar/libplist/2.7.0/lib"
+        OTHER_LDFLAGS:
+          - "-luxplay_combined"
+          - "-lcrypto"
+          - "-lplist-2.0"
+          - "-lpthread"
+        # Swift concurrency settings
+        SWIFT_STRICT_CONCURRENCY: complete
+        ENABLE_USER_SCRIPT_SANDBOXING: false
+      configs:
+        Debug:
+          SWIFT_OPTIMIZATION_LEVEL: "-Onone"
+          CODE_SIGN_IDENTITY: "Apple Development"
+          CODE_SIGN_STYLE: Automatic
+        Release:
+          SWIFT_OPTIMIZATION_LEVEL: "-O"
+          CODE_SIGN_IDENTITY: "Developer ID Application"
+          CODE_SIGN_STYLE: Manual
+          PROVISIONING_PROFILE_SPECIFIER: ""
+          ENABLE_HARDENED_RUNTIME: YES
+          OTHER_CODE_SIGN_FLAGS: "--timestamp --options runtime"
+          CODE_SIGN_INJECT_BASE_ENTITLEMENTS: NO
+    entitlements:
+      path: Sources/AirCapture.entitlements
