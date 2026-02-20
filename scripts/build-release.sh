@@ -21,8 +21,10 @@ echo "Cleaning previous builds..."
 rm -rf "$BUILD_DIR"
 mkdir -p "$BUILD_DIR"
 
-# Set Xcode developer directory
-export DEVELOPER_DIR="/Applications/Xcode v3.app/Contents/Developer"
+# Set Xcode developer directory (only override if this specific path exists locally)
+if [ -d "/Applications/Xcode v3.app/Contents/Developer" ]; then
+    export DEVELOPER_DIR="/Applications/Xcode v3.app/Contents/Developer"
+fi
 
 # Regenerate Xcode project
 echo "Regenerating Xcode project..."
