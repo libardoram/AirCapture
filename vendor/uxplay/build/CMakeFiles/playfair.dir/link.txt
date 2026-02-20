@@ -1,0 +1,2 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libplayfair.a CMakeFiles/playfair.dir/lib/playfair/hand_garble.c.o CMakeFiles/playfair.dir/lib/playfair/modified_md5.c.o CMakeFiles/playfair.dir/lib/playfair/omg_hax.c.o CMakeFiles/playfair.dir/lib/playfair/playfair.c.o CMakeFiles/playfair.dir/lib/playfair/sap_hash.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib libplayfair.a

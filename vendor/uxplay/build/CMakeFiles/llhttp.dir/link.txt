@@ -1,0 +1,2 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libllhttp.a CMakeFiles/llhttp.dir/lib/llhttp/api.c.o CMakeFiles/llhttp.dir/lib/llhttp/http.c.o CMakeFiles/llhttp.dir/lib/llhttp/llhttp.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib libllhttp.a

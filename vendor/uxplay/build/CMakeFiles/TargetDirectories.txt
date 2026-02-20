@@ -1,0 +1,5 @@
+/Users/admin/Documents/GitHub/AirTeacher/vendor/uxplay/build/CMakeFiles/playfair.dir
+/Users/admin/Documents/GitHub/AirTeacher/vendor/uxplay/build/CMakeFiles/llhttp.dir
+/Users/admin/Documents/GitHub/AirTeacher/vendor/uxplay/build/CMakeFiles/airplay.dir
+/Users/admin/Documents/GitHub/AirTeacher/vendor/uxplay/build/CMakeFiles/edit_cache.dir
+/Users/admin/Documents/GitHub/AirTeacher/vendor/uxplay/build/CMakeFiles/rebuild_cache.dir

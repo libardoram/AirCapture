@@ -1,0 +1,459 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0950BD64DEEE4233B52A3535 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE397A689558B7709FC5580 /* SettingsView.swift */; };
+		0C28B7487A7609CF1C67C31A /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54915EA5ED5480FC2AD323 /* AppSettings.swift */; };
+		2FF2CA7EF91373B92A5878F6 /* StreamRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD8262B2A8FBC91F6120B76 /* StreamRecorder.swift */; };
+		3C25526EC9FD0674895E4BC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E52AC4E0FD1BA8F67C4F6D2A /* Assets.xcassets */; };
+		4060BABA70EB847377D02683 /* USER_GUIDE.md in Resources */ = {isa = PBXBuildFile; fileRef = 6106344EF8E7D085A3869B1F /* USER_GUIDE.md */; };
+		421059680AF7C1D0966BBCB2 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217FB2B01C7685B1646DAF4F /* AboutView.swift */; };
+		43B307390835094C3EB38617 /* StreamZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E618A55DDA2232A960B4B176 /* StreamZoomView.swift */; };
+		4FE4F962A7751D88CF267CF5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 639E8F13E4B9C88852582A6D /* README.md */; };
+		6E1F59C71573E3244676D05E /* SnapshotRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E6878597BF8A08FCC8095 /* SnapshotRecorder.swift */; };
+		7C0A3CE39392BECB4F358557 /* StreamGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D999909A3A68B80E8D292909 /* StreamGridView.swift */; };
+		9C374FFAB77101FA46BEA48F /* PINAttemptTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A947D1CAF9B7C2FCB320C7 /* PINAttemptTracker.swift */; };
+		A55CF03FC4C6AC799C72BCCC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABACB7428DC7B02CA8D29FFE /* ContentView.swift */; };
+		B69BF40942E003CA0E4353AA /* VideoDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9C8558C5A5A42C14EBBE44 /* VideoDecoder.swift */; };
+		B7B60FE48DB2459A57D2B44D /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BBA7E780E4405A3E715C40 /* HelpView.swift */; };
+		BB82384D2862F98309AB8425 /* StreamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77A5C2F6E9BE14AF7BE860 /* StreamManager.swift */; };
+		C8713C693DFD3BD05C1FFBDE /* SETTINGS_REFERENCE.md in Resources */ = {isa = PBXBuildFile; fileRef = 7AE0764B2051C501F95FBFCD /* SETTINGS_REFERENCE.md */; };
+		D0B96D2B9AEE2B1772912F04 /* AirCaptureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEA8DE987292A6F2DF988D6 /* AirCaptureApp.swift */; };
+		DAC0FE3F0026AF8EA81F4CE8 /* ConnectionLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520EF8F9E9793125CB6F26EF /* ConnectionLogger.swift */; };
+		ECADBFFD3C25A48B5591F846 /* QUICK_START.md in Resources */ = {isa = PBXBuildFile; fileRef = B291930259133B8890BB9624 /* QUICK_START.md */; };
+		F128C095265705984146725A /* AirPlayReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00BD1BFA9BC563B2A008717 /* AirPlayReceiver.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0FEA8DE987292A6F2DF988D6 /* AirCaptureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirCaptureApp.swift; sourceTree = "<group>"; };
+		217FB2B01C7685B1646DAF4F /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		270E6878597BF8A08FCC8095 /* SnapshotRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotRecorder.swift; sourceTree = "<group>"; };
+		49BBA7E780E4405A3E715C40 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		520EF8F9E9793125CB6F26EF /* ConnectionLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionLogger.swift; sourceTree = "<group>"; };
+		5CD8262B2A8FBC91F6120B76 /* StreamRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamRecorder.swift; sourceTree = "<group>"; };
+		6106344EF8E7D085A3869B1F /* USER_GUIDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = USER_GUIDE.md; sourceTree = "<group>"; };
+		639E8F13E4B9C88852582A6D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7AE0764B2051C501F95FBFCD /* SETTINGS_REFERENCE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SETTINGS_REFERENCE.md; sourceTree = "<group>"; };
+		93838703272482F89A26555D /* AirCapture-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AirCapture-Bridging-Header.h"; sourceTree = "<group>"; };
+		ABACB7428DC7B02CA8D29FFE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B00BD1BFA9BC563B2A008717 /* AirPlayReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPlayReceiver.swift; sourceTree = "<group>"; };
+		B1C2F628CB7F8EF6EB4E873C /* AirCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B291930259133B8890BB9624 /* QUICK_START.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = QUICK_START.md; sourceTree = "<group>"; };
+		BDE397A689558B7709FC5580 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C4A947D1CAF9B7C2FCB320C7 /* PINAttemptTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINAttemptTracker.swift; sourceTree = "<group>"; };
+		CD77A5C2F6E9BE14AF7BE860 /* StreamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamManager.swift; sourceTree = "<group>"; };
+		CE28D0749BFB7A3E0D5D77D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D999909A3A68B80E8D292909 /* StreamGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamGridView.swift; sourceTree = "<group>"; };
+		E52AC4E0FD1BA8F67C4F6D2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E618A55DDA2232A960B4B176 /* StreamZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamZoomView.swift; sourceTree = "<group>"; };
+		FA54915EA5ED5480FC2AD323 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		FD9C8558C5A5A42C14EBBE44 /* VideoDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDecoder.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		04D5A0070902362D3EA3E7EE /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				217FB2B01C7685B1646DAF4F /* AboutView.swift */,
+				93838703272482F89A26555D /* AirCapture-Bridging-Header.h */,
+				0FEA8DE987292A6F2DF988D6 /* AirCaptureApp.swift */,
+				B00BD1BFA9BC563B2A008717 /* AirPlayReceiver.swift */,
+				FA54915EA5ED5480FC2AD323 /* AppSettings.swift */,
+				E52AC4E0FD1BA8F67C4F6D2A /* Assets.xcassets */,
+				520EF8F9E9793125CB6F26EF /* ConnectionLogger.swift */,
+				ABACB7428DC7B02CA8D29FFE /* ContentView.swift */,
+				49BBA7E780E4405A3E715C40 /* HelpView.swift */,
+				CE28D0749BFB7A3E0D5D77D6 /* Info.plist */,
+				C4A947D1CAF9B7C2FCB320C7 /* PINAttemptTracker.swift */,
+				BDE397A689558B7709FC5580 /* SettingsView.swift */,
+				270E6878597BF8A08FCC8095 /* SnapshotRecorder.swift */,
+				D999909A3A68B80E8D292909 /* StreamGridView.swift */,
+				CD77A5C2F6E9BE14AF7BE860 /* StreamManager.swift */,
+				5CD8262B2A8FBC91F6120B76 /* StreamRecorder.swift */,
+				E618A55DDA2232A960B4B176 /* StreamZoomView.swift */,
+				FD9C8558C5A5A42C14EBBE44 /* VideoDecoder.swift */,
+				CF27FBB19E8BC98231DAD5CE /* Resources */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		0BC1555342C70D8C2D1EA8C2 = {
+			isa = PBXGroup;
+			children = (
+				04D5A0070902362D3EA3E7EE /* Sources */,
+				60C67A786B176AEA7D7846C9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		60C67A786B176AEA7D7846C9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1C2F628CB7F8EF6EB4E873C /* AirCapture.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF27FBB19E8BC98231DAD5CE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B291930259133B8890BB9624 /* QUICK_START.md */,
+				639E8F13E4B9C88852582A6D /* README.md */,
+				7AE0764B2051C501F95FBFCD /* SETTINGS_REFERENCE.md */,
+				6106344EF8E7D085A3869B1F /* USER_GUIDE.md */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		47E5205DC1252E4D342D4923 /* AirCapture */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81F8BA933CF45213C2FE31C4 /* Build configuration list for PBXNativeTarget "AirCapture" */;
+			buildPhases = (
+				083B5E5F05499254F0A37B65 /* Sources */,
+				F5549CF69DC3860EEC34BAD0 /* Embed Libraries */,
+				D8F9909E5D5C19D454DDB81D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AirCapture;
+			packageProductDependencies = (
+			);
+			productName = AirCapture;
+			productReference = B1C2F628CB7F8EF6EB4E873C /* AirCapture.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		34FE7087AAB395A4D74BCEF2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					47E5205DC1252E4D342D4923 = {
+						DevelopmentTeam = P52TP966B3;
+					};
+				};
+			};
+			buildConfigurationList = 0011D81EFF8C9D820F4B6AB3 /* Build configuration list for PBXProject "AirCapture" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 0BC1555342C70D8C2D1EA8C2;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				47E5205DC1252E4D342D4923 /* AirCapture */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D8F9909E5D5C19D454DDB81D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C25526EC9FD0674895E4BC2 /* Assets.xcassets in Resources */,
+				ECADBFFD3C25A48B5591F846 /* QUICK_START.md in Resources */,
+				4FE4F962A7751D88CF267CF5 /* README.md in Resources */,
+				C8713C693DFD3BD05C1FFBDE /* SETTINGS_REFERENCE.md in Resources */,
+				4060BABA70EB847377D02683 /* USER_GUIDE.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F5549CF69DC3860EEC34BAD0 /* Embed Libraries */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Libraries";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/Scripts/embed_libraries.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		083B5E5F05499254F0A37B65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				421059680AF7C1D0966BBCB2 /* AboutView.swift in Sources */,
+				D0B96D2B9AEE2B1772912F04 /* AirCaptureApp.swift in Sources */,
+				F128C095265705984146725A /* AirPlayReceiver.swift in Sources */,
+				0C28B7487A7609CF1C67C31A /* AppSettings.swift in Sources */,
+				DAC0FE3F0026AF8EA81F4CE8 /* ConnectionLogger.swift in Sources */,
+				A55CF03FC4C6AC799C72BCCC /* ContentView.swift in Sources */,
+				B7B60FE48DB2459A57D2B44D /* HelpView.swift in Sources */,
+				9C374FFAB77101FA46BEA48F /* PINAttemptTracker.swift in Sources */,
+				0950BD64DEEE4233B52A3535 /* SettingsView.swift in Sources */,
+				6E1F59C71573E3244676D05E /* SnapshotRecorder.swift in Sources */,
+				7C0A3CE39392BECB4F358557 /* StreamGridView.swift in Sources */,
+				BB82384D2862F98309AB8425 /* StreamManager.swift in Sources */,
+				2FF2CA7EF91373B92A5878F6 /* StreamRecorder.swift in Sources */,
+				43B307390835094C3EB38617 /* StreamZoomView.swift in Sources */,
+				B69BF40942E003CA0E4353AA /* VideoDecoder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		137B84FC840DA44527BCBE65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = P52TP966B3;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		21AEA31357A90989F530F3DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = P52TP966B3;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		70DCB614A4A7C8D3DDFD58E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sources/AirCapture.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../vendor/uxplay/build/include",
+					"$(PROJECT_DIR)/../vendor/uxplay/lib",
+				);
+				INFOPLIST_FILE = Sources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../vendor/uxplay/build",
+					"/opt/homebrew/Cellar/openssl@3/3.6.1/lib",
+					/opt/homebrew/Cellar/libplist/2.7.0/lib,
+				);
+				OTHER_CODE_SIGN_FLAGS = "--timestamp --options runtime";
+				OTHER_LDFLAGS = (
+					"-luxplay_combined",
+					"-lcrypto",
+					"-lplist-2.0",
+					"-lpthread",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.aircapture.AirCapture;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Sources/AirCapture-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+			};
+			name = Release;
+		};
+		7D7BF1F57BAAF31253540E0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sources/AirCapture.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../vendor/uxplay/build/include",
+					"$(PROJECT_DIR)/../vendor/uxplay/lib",
+				);
+				INFOPLIST_FILE = Sources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../vendor/uxplay/build",
+					"/opt/homebrew/Cellar/openssl@3/3.6.1/lib",
+					/opt/homebrew/Cellar/libplist/2.7.0/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-luxplay_combined",
+					"-lcrypto",
+					"-lplist-2.0",
+					"-lpthread",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.aircapture.AirCapture;
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Sources/AirCapture-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0011D81EFF8C9D820F4B6AB3 /* Build configuration list for PBXProject "AirCapture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21AEA31357A90989F530F3DA /* Debug */,
+				137B84FC840DA44527BCBE65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		81F8BA933CF45213C2FE31C4 /* Build configuration list for PBXNativeTarget "AirCapture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D7BF1F57BAAF31253540E0E /* Debug */,
+				70DCB614A4A7C8D3DDFD58E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 34FE7087AAB395A4D74BCEF2 /* Project object */;
+}
