@@ -30,7 +30,7 @@ final class AppSettings: ObservableObject {
     
     // MARK: - Stream Settings
     
-    @AppStorage("streamCount") var streamCount: Int = 4 {
+    @AppStorage("streamCount") var streamCount: Int = 5 {
         didSet { objectWillChange.send() }
     }
     

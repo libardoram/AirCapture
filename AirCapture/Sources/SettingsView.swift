@@ -43,6 +43,7 @@ struct SettingsView: View {
     
     @State private var selectedSection: SettingsSection = .general
     @State private var selectedQualityPreset: VideoQualityPreset = .medium
+    @State private var streamCountInput: String = ""
     
     var body: some View {
         HStack(spacing: 0) {
@@ -142,15 +143,55 @@ struct SettingsView: View {
         VStack(alignment: .leading, spacing: 24) {
             SettingRow(
                 title: "Number of Streams",
-                description: "Configure how many student devices can connect simultaneously. For best performance with many streams, use a Mac with sufficient RAM and a wired Ethernet connection. Changes require restarting the receivers."
+                description: "Configure how many receiver slots are active simultaneously. Each slot appears as a separate device in the AirPlay picker. Changes require restarting the receivers."
             ) {
-                HStack {
-                    Stepper("\(settings.streamCount)", value: $settings.streamCount, in: 1...100)
-                        .frame(width: 120)
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack(spacing: 12) {
+                        TextField("", text: $streamCountInput)
+                            .textFieldStyle(.roundedBorder)
+                            .frame(width: 70)
+                            .multilineTextAlignment(.center)
+                            .font(.system(.body, design: .monospaced))
+                            .onAppear {
+                                streamCountInput = "\(settings.streamCount)"
+                            }
+                            .onChange(of: streamCountInput) { _, newValue in
+                                let filtered = newValue.filter { $0.isNumber }
+                                if filtered != newValue {
+                                    streamCountInput = filtered
+                                    return
+                                }
+                                if let parsed = Int(filtered) {
+                                    let clamped = max(1, parsed)
+                                    settings.streamCount = clamped
+                                } else if filtered.isEmpty {
+                                    // allow clearing the field without resetting yet
+                                }
+                            }
+                            .onSubmit {
+                                commitStreamCount()
+                            }
+                        
+                        Text("(Requires restart)")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                     
-                    Text("(Requires restart)")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                    if settings.streamCount > 30 {
+                        HStack(spacing: 6) {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .foregroundStyle(.orange)
+                                .font(.caption)
+                            Text("More than 30 streams may impact performance. Ensure your Mac has sufficient RAM and a wired Ethernet connection.")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color.orange.opacity(0.1))
+                        .cornerRadius(6)
+                    }
                 }
             }
             
@@ -441,6 +482,16 @@ struct SettingsView: View {
     }
     
     // MARK: - Helper Functions
+    
+    private func commitStreamCount() {
+        if let parsed = Int(streamCountInput), parsed >= 1 {
+            settings.streamCount = parsed
+            streamCountInput = "\(parsed)"
+        } else {
+            // Reset to current valid value if input is empty or invalid
+            streamCountInput = "\(settings.streamCount)"
+        }
+    }
     
     private var snapshotFrameRate: Double {
         if settings.snapshotInterval <= 0 {
