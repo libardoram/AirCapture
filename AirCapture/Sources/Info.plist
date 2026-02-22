@@ -12,6 +12,8 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
 	<key>NSBonjourServices</key>
 	<array>
 		<string>_raop._tcp</string>
