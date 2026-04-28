@@ -27,9 +27,9 @@ struct ContentView: View {
     @State private var sessionNameInput = ""
     @State private var currentTime = Date()
     @State private var selectedSlotForZoom: StreamSlot?
-    
+
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
+
     init() {
         let settings = AppSettings.shared
         _streamManager = StateObject(wrappedValue: StreamManager(slotCount: settings.streamCount))
@@ -38,160 +38,40 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 0) {
             // Toolbar
-            HStack {
+            HStack(spacing: 12) {
                 Text("AirCapture")
-                    .font(.title2)
-                    .fontWeight(.bold)
+                    .font(.headline)
+                    .foregroundStyle(.primary)
 
                 Spacer()
 
-                // Connection count
-                HStack(spacing: 4) {
-                    Image(systemName: "person.2.fill")
-                    Text("\(streamManager.activeConnectionCount) / \(streamManager.slots.count)")
-                }
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                
-                // PIN display (if enabled and running)
-                if streamManager.isRunning && streamManager.pinEnabled {
-                    Divider()
-                        .frame(height: 20)
-                    
-                    HStack(spacing: 6) {
-                        Image(systemName: "lock.fill")
-                            .font(.caption)
-                        
-                        Text("PIN:")
-                            .font(.caption)
-                        
-                        Text(streamManager.currentPIN)
-                            .font(.system(.body, design: .monospaced))
-                            .fontWeight(.bold)
-                        
-                        Button(action: {
-                            NSPasteboard.general.clearContents()
-                            NSPasteboard.general.setString(streamManager.currentPIN, forType: .string)
-                        }) {
-                            Image(systemName: "doc.on.doc")
-                                .font(.caption)
-                        }
-                        .buttonStyle(.plain)
-                        .help("Copy PIN to clipboard")
-                    }
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 4)
-                    .background(.blue)
-                    .cornerRadius(6)
-                }
-                
-                // Recording duration (if recording)
-                if streamManager.isRecordingActive, let startTime = streamManager.recordingStartTime {
-                    Divider()
-                        .frame(height: 20)
-                    
-                    HStack(spacing: 4) {
-                        Image(systemName: "clock.fill")
-                        Text(formatDuration(from: startTime, to: currentTime))
-                    }
-                    .font(.subheadline)
-                    .foregroundStyle(.orange)
-                }
-
-                Spacer()
-
-                // Start / Stop button
-                Button(action: {
-                    if streamManager.isRunning {
-                        streamManager.stopAll()
-                    } else {
-                        streamManager.startAll()
-                    }
-                }) {
-                    HStack(spacing: 4) {
-                        if streamManager.isStopping {
-                            ProgressView()
-                                .controlSize(.small)
-                                .scaleEffect(0.8)
-                        } else {
-                            Image(systemName: streamManager.isRunning ? "stop.fill" : "play.fill")
-                        }
-                        Text(streamManager.isStopping ? "Stopping..." : (streamManager.isRunning ? "Stop" : "Start"))
-                    }
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(streamManager.isRunning ? .red : .green)
-                .disabled(streamManager.isStopping)
-                
-                // Record / Stop Recording button (only enabled when running)
-                Button(action: {
-                    if streamManager.isRecordingActive {
-                        streamManager.stopAllRecordings()
-                    } else {
-                        // Show session name dialog
-                        sessionNameInput = settings.sessionName
-                        showingSessionNameDialog = true
-                    }
-                }) {
-                    HStack(spacing: 4) {
-                        Image(systemName: streamManager.isRecordingActive ? "stop.circle.fill" : "record.circle")
-                        Text(streamManager.isRecordingActive ? "Stop Recording" : "Record")
-                    }
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(streamManager.isRecordingActive ? .orange : .blue)
-                .disabled(!streamManager.isRunning)
-                
-                // Settings button
-                Button(action: {
-                    showingSettings = true
-                }) {
-                    Image(systemName: "gear")
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 6)
-                }
-                .buttonStyle(.bordered)
+                startStopButton
+                recordButton
+                settingsButton
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(.bar)
+            .background(Color(nsColor: .controlBackgroundColor))
+
+            statusStrip
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+                .background(Color(nsColor: .underPageBackgroundColor))
 
             Divider()
 
-            // Stream grid
+            // Stream grid or idle state
             if streamManager.isRunning {
                 ScrollView {
                     StreamGridView(manager: streamManager, selectedSlotForZoom: $selectedSlotForZoom)
+                        .background(Color(nsColor: .underPageBackgroundColor))
                 }
             } else {
-                // Not started state
-                Spacer()
-                VStack(spacing: 16) {
-                    Image(systemName: "airplayvideo")
-                        .font(.system(size: 64))
-                        .foregroundStyle(.tertiary)
-
-                    Text("AirPlay Receiver")
-                        .font(.title)
-                        .foregroundStyle(.secondary)
-
-                    Text("Click Start to begin receiving AirPlay screen mirroring streams.")
-                        .font(.body)
-                        .foregroundStyle(.tertiary)
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: 400)
-                }
-                Spacer()
+                idleStateView
             }
         }
         .frame(minWidth: 800, minHeight: 600)
         .overlay {
-            // Full-window zoom view overlay
             if let slot = selectedSlotForZoom {
                 StreamZoomView(slot: slot, isPresented: Binding(
                     get: { selectedSlotForZoom != nil },
@@ -218,15 +98,196 @@ struct ContentView: View {
             currentTime = time
         }
     }
-    
+
+    // MARK: - Toolbar Items
+
+    private var startStopButton: some View {
+        Button(action: {
+            if streamManager.isRunning {
+                streamManager.stopAll()
+            } else {
+                streamManager.startAll()
+            }
+        }) {
+            HStack(spacing: 4) {
+                if streamManager.isStopping {
+                    ProgressView()
+                        .controlSize(.small)
+                        .scaleEffect(0.8)
+                } else {
+                    Image(systemName: streamManager.isRunning ? "stop.fill" : "play.fill")
+                }
+                Text(streamManager.isStopping ? "Stopping..." : (streamManager.isRunning ? "Stop" : "Start"))
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+        }
+        .buttonStyle(.borderedProminent)
+        .tint(streamManager.isRunning ? .red : .green)
+        .disabled(streamManager.isStopping)
+    }
+
+    private var recordButton: some View {
+        Button(action: {
+            if streamManager.isRecordingActive {
+                streamManager.stopAllRecordings()
+            } else {
+                sessionNameInput = settings.sessionName
+                showingSessionNameDialog = true
+            }
+        }) {
+            HStack(spacing: 4) {
+                Image(systemName: streamManager.isRecordingActive ? "stop.circle.fill" : "record.circle")
+                Text(streamManager.isRecordingActive ? "Stop Recording" : "Record")
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+        }
+        .buttonStyle(.borderedProminent)
+        .tint(streamManager.isRecordingActive ? .orange : .blue)
+        .disabled(!streamManager.isRunning)
+    }
+
+    private var settingsButton: some View {
+        Button(action: { showingSettings = true }) {
+            Image(systemName: "gear")
+        }
+        .buttonStyle(.bordered)
+    }
+
+    // MARK: - Status Strip
+
+    private var statusStrip: some View {
+        HStack(spacing: 12) {
+            HStack(spacing: 4) {
+                Image(systemName: "person.2.fill")
+                    .font(.caption)
+                Text("\(streamManager.activeConnectionCount) / \(streamManager.slots.count) streams")
+            }
+            .font(.caption)
+            .foregroundStyle(.secondary)
+
+            if streamManager.isRunning && streamManager.pinEnabled {
+                Divider()
+                    .frame(height: 12)
+
+                HStack(spacing: 4) {
+                    Image(systemName: "lock.fill")
+                        .font(.caption2)
+                    Text("PIN:")
+                        .font(.caption2)
+                    Text(streamManager.currentPIN)
+                        .font(.system(.caption, design: .monospaced))
+                        .fontWeight(.bold)
+                    Button(action: {
+                        NSPasteboard.general.clearContents()
+                        NSPasteboard.general.setString(streamManager.currentPIN, forType: .string)
+                    }) {
+                        Image(systemName: "doc.on.doc")
+                            .font(.caption2)
+                    }
+                    .buttonStyle(.plain)
+                    .help("Copy PIN to clipboard")
+                }
+                .foregroundStyle(.secondary)
+            }
+
+            if streamManager.isRecordingActive, let startTime = streamManager.recordingStartTime {
+                Divider()
+                    .frame(height: 12)
+
+                HStack(spacing: 4) {
+                    Image(systemName: "circle.fill")
+                        .font(.caption2)
+                        .foregroundStyle(.red)
+                    Text(formatDuration(from: startTime, to: currentTime))
+                        .font(.caption)
+                        .foregroundStyle(.orange)
+                }
+            }
+
+            Spacer()
+
+            if streamManager.isRunning {
+                Text("\(settings.streamCount)-stream mode")
+                    .font(.caption2)
+                    .foregroundStyle(.tertiary)
+            }
+        }
+    }
+
+    // MARK: - Idle State
+
+    private var idleStateView: some View {
+        VStack(spacing: 20) {
+            Spacer()
+
+            idleIcon
+
+            VStack(spacing: 8) {
+                Text("AirPlay Receiver")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.primary)
+
+                Text("Receive screen mirroring from iPhones, iPads, and Macs")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: 380)
+            }
+
+            Button(action: { streamManager.startAll() }) {
+                HStack(spacing: 6) {
+                    Image(systemName: "play.fill")
+                    Text("Start AirPlay Receiver")
+                }
+                .padding(.horizontal, 20)
+                .padding(.vertical, 10)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(.green)
+            .controlSize(.large)
+
+            VStack(spacing: 4) {
+                Text("Configured for \(settings.streamCount) simultaneous stream\(settings.streamCount == 1 ? "" : "s")")
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
+
+                if streamManager.pinEnabled {
+                    Text("PIN protection enabled — tap Start to begin")
+                        .font(.caption)
+                        .foregroundStyle(.tertiary)
+                }
+            }
+
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color(nsColor: .underPageBackgroundColor))
+    }
+
+    private var idleIcon: some View {
+        ZStack {
+            Circle()
+                .fill(Color.accentColor.opacity(0.12))
+                .frame(width: 120, height: 120)
+
+            Image(systemName: "airplayvideo")
+                .font(.system(size: 48))
+                .foregroundStyle(Color.accentColor)
+                .symbolEffect(.pulse, options: .repeating)
+        }
+    }
+
     // MARK: - Helper Methods
-    
+
     private func formatDuration(from start: Date, to end: Date) -> String {
         let duration = Int(end.timeIntervalSince(start))
         let hours = duration / 3600
         let minutes = (duration % 3600) / 60
         let seconds = duration % 60
-        
+
         if hours > 0 {
             return String(format: "%d:%02d:%02d", hours, minutes, seconds)
         } else {

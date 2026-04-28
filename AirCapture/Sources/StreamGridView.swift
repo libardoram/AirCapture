@@ -29,7 +29,6 @@ struct StreamGridView: View {
     @ObservedObject var manager: StreamManager
     @Binding var selectedSlotForZoom: StreamSlot?
 
-    /// Number of columns adapts based on slot count.
     private var columns: [GridItem] {
         let count = manager.slots.count
         let cols: Int
@@ -41,20 +40,19 @@ struct StreamGridView: View {
         case 17...25: cols = 5
         default: cols = 6
         }
-        return Array(repeating: GridItem(.flexible(), spacing: 2), count: cols)
+        return Array(repeating: GridItem(.flexible(), spacing: 8), count: cols)
     }
 
     var body: some View {
-        LazyVGrid(columns: columns, spacing: 2) {
+        LazyVGrid(columns: columns, spacing: 8) {
             ForEach(manager.slots) { slot in
                 StreamTileView(slot: slot)
                     .onTapGesture(count: 2) {
-                        // Double-click to show fullscreen
                         selectedSlotForZoom = slot
                     }
             }
         }
-        .padding(2)
+        .padding(8)
     }
 }
 
@@ -63,6 +61,7 @@ struct StreamGridView: View {
 /// A single tile in the grid, showing either live video or a waiting state.
 struct StreamTileView: View {
     @ObservedObject var slot: StreamSlot
+    @State private var isHovered = false
 
     var body: some View {
         ZStack {
@@ -70,81 +69,104 @@ struct StreamTileView: View {
             Color.black
 
             if slot.isConnected, slot.latestPixelBuffer != nil {
-                // Live video display
                 PixelBufferView(pixelBuffer: slot.latestPixelBuffer)
                     .aspectRatio(16.0 / 9.0, contentMode: .fit)
             } else {
-                // Waiting state
-                VStack(spacing: 8) {
-                    Image(systemName: slot.isConnected ? "airplayaudio" : "airplayvideo")
-                        .font(.system(size: 32))
-                        .foregroundStyle(slot.isConnected ? .green : .secondary)
-
-                    Text(slot.serviceName)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-
-                    if slot.isConnected {
-                        Text(slot.clientName)
-                            .font(.caption2)
-                            .foregroundStyle(.green)
-                    } else {
-                        Text("Waiting for connection...")
-                            .font(.caption2)
-                            .foregroundStyle(.tertiary)
-                    }
-                }
+                waitingStateView
             }
 
-            // Overlay: connection info badge and recording indicator
-            if slot.isConnected {
-                VStack {
-                    HStack {
-                        // Recording indicator (top-left)
-                        if slot.isRecording {
-                            HStack(spacing: 4) {
-                                Circle()
-                                    .fill(.red)
-                                    .frame(width: 8, height: 8)
-                                Text("REC")
-                                    .font(.caption2)
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.white)
-                            }
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 3)
-                            .background(.red.opacity(0.8))
-                            .clipShape(RoundedRectangle(cornerRadius: 4))
-                            .padding(4)
-                        }
-                        
-                        Spacer()
-                        
-                        // Connection status (top-right)
+            // Overlay badges
+            VStack {
+                HStack(spacing: 4) {
+                    // Slot number badge
+                    Text("\(slot.id + 1)")
+                        .font(.caption2)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 5)
+                        .padding(.vertical, 2)
+                        .background(.white.opacity(0.2))
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                        .padding(4)
+
+                    if slot.isRecording {
                         HStack(spacing: 4) {
                             Circle()
-                                .fill(.green)
+                                .fill(.red)
                                 .frame(width: 6, height: 6)
-                            Text(slot.clientName)
+                            Text("REC")
                                 .font(.caption2)
+                                .fontWeight(.semibold)
                                 .foregroundStyle(.white)
                         }
                         .padding(.horizontal, 6)
                         .padding(.vertical, 3)
-                        .background(.black.opacity(0.6))
+                        .background(.red.opacity(0.85))
                         .clipShape(RoundedRectangle(cornerRadius: 4))
                         .padding(4)
                     }
+
                     Spacer()
+                }
+
+                Spacer()
+
+                HStack {
+                    Spacer()
+                    // Connection status badge
+                    HStack(spacing: 4) {
+                        Circle()
+                            .fill(.green)
+                            .frame(width: 6, height: 6)
+                        Text(slot.clientName)
+                            .font(.caption2)
+                            .foregroundStyle(.white)
+                    }
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(.ultraThinMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 6))
+                    .padding(6)
                 }
             }
         }
         .aspectRatio(16.0 / 9.0, contentMode: .fit)
-        .clipShape(RoundedRectangle(cornerRadius: 4))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay(
-            RoundedRectangle(cornerRadius: 4)
-                .strokeBorder(slot.isConnected ? Color.green.opacity(0.5) : Color.gray.opacity(0.3), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 8)
+                .strokeBorder(
+                    slot.isConnected ? Color.green.opacity(0.7) : Color.white.opacity(0.12),
+                    lineWidth: slot.isConnected ? 1.5 : 1
+                )
         )
+        .scaleEffect(isHovered ? 1.02 : 1.0)
+        .animation(.easeInOut(duration: 0.15), value: isHovered)
+        .onHover { hovering in
+            isHovered = hovering
+        }
+    }
+
+    private var waitingStateView: some View {
+        VStack(spacing: 10) {
+            Image(systemName: slot.isConnected ? "airplayaudio" : "airplayvideo")
+                .font(.system(size: 40))
+                .foregroundStyle(slot.isConnected ? .green : .white.opacity(0.35))
+                .symbolEffect(.pulse, options: .repeating, value: slot.isConnected)
+
+            Text(slot.serviceName.isEmpty ? "Stream \(slot.id + 1)" : slot.serviceName)
+                .font(.subheadline)
+                .foregroundStyle(.white.opacity(0.5))
+
+            if slot.isConnected {
+                Text(slot.clientName)
+                    .font(.caption)
+                    .foregroundStyle(.green.opacity(0.8))
+            } else {
+                Text("Waiting for connection...")
+                    .font(.caption)
+                    .foregroundStyle(.white.opacity(0.3))
+            }
+        }
     }
 }
 
@@ -185,14 +207,12 @@ final class PixelBufferNSView: NSView {
             layer?.contents = nil
             return
         }
-        
-        // CRITICAL: Lock pixel buffer before accessing its memory to prevent crashes
+
         CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly)
         defer {
             CVPixelBufferUnlockBaseAddress(pixelBuffer, .readOnly)
         }
-        
-        // Convert CVPixelBuffer to CGImage via CIImage
+
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
         if let cgImage = ciContext.createCGImage(ciImage, from: ciImage.extent) {
             CATransaction.begin()
