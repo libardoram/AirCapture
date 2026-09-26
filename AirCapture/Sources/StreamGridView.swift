@@ -70,7 +70,6 @@ struct StreamTileView: View {
 
             if slot.isConnected, slot.latestPixelBuffer != nil {
                 PixelBufferView(pixelBuffer: slot.latestPixelBuffer)
-                    .aspectRatio(16.0 / 9.0, contentMode: .fit)
             } else {
                 waitingStateView
             }
@@ -91,9 +90,10 @@ struct StreamTileView: View {
 
                     if slot.isRecording {
                         HStack(spacing: 4) {
-                            Circle()
-                                .fill(.red)
-                                .frame(width: 6, height: 6)
+                            Image(systemName: "circle.fill")
+                                .font(.system(size: 6))
+                                .foregroundStyle(.red)
+                                .symbolEffect(.pulse, options: .repeating)
                             Text("REC")
                                 .font(.caption2)
                                 .fontWeight(.semibold)
@@ -144,6 +144,7 @@ struct StreamTileView: View {
         .onHover { hovering in
             isHovered = hovering
         }
+        .help("Double-click to enlarge")
     }
 
     private var waitingStateView: some View {
